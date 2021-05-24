@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css"
+      rel="stylesheet"
+      id="bootstrap-css"
+    />
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="../Styles/login.css" />
+    <title>Login</title>
+  </head>
+  <body>
+    <form action="../ConfigFiles/Auth/AuthLogin.php" method="post">
+      <label>
+        <p class="label-txt">ENTER YOUR EMAIL</p>
+        <input type="text" name="email" class="input" />
+        <div class="line-box">
+          <div class="line"></div>
+        </div>
+      </label>
+      <label>
+        <p class="label-txt">ENTER YOUR PASSWORD</p>
+        <input type="password" name="password" class="input" />
+        <div class="line-box">
+          <div class="line"></div>
+        </div>
+      </label>
+      <input type="submit" id="btnSubmit" name="login" value="Submit" />
+    </form>
+  </body>
+</html>
