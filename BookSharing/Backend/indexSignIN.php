@@ -1,5 +1,10 @@
 <?php
-
+session_start();
+if(!empty($_SESSION["user_email"])) {
+    header('Location: welcome.php');
+} else {
+    header('Location: SignIN.php');
+}
 ?>
 
 <!DOCTYPE html>

@@ -3,6 +3,7 @@
 require "db.php";
 
 
+
 function userCredentials(){
     // If the Session is active, just let the user in
     if (isset($_SESSION['user_email'])){
@@ -11,9 +12,10 @@ function userCredentials(){
     }
 
     // Getting the credentials form the SignIN form
-    if (isset($_REQUEST['submit_SignIN'])){
-        $email = strip_tags($_REQUEST['email']);
-        $password = strip_tags($_REQUEST['password']);
+    if (! empty($_POST["login"])){
+        session_start();
+        $email = filter_var($_POST["email"], FILTER_SANITIZE_STRING);
+        $password = filter_var($_POST["password"], FILTER_SANITIZE_STRING);
 
         //echo "Email : ". $email . "<br> Password : ". $password; 
         
@@ -41,7 +43,6 @@ function login(){
     }
     while ($row = $stmt->fetch()) {
         if($userPassword == $row['password']){
-            session_start();
             $_SESSION['user_email'] = $userEmail;
             $_SESSION['user_password'] = $row['password'];
             
@@ -51,8 +52,7 @@ function login(){
 
     return FALSE;
 
-}
-
+}+
 
 if(login()){
     header('Location: welcome.php');

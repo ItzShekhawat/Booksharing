@@ -12,9 +12,7 @@ function connect(){ // Database Connection With PDO
         echo "Error" . $e->getMessage();
         die();
     }
-
     return $conn;
-
 }
 
 
