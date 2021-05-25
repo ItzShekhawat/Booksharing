@@ -1,5 +1,11 @@
 function generateQRCode(){
-    var qr;
+    var QRCode;
+    QRCode = new QRious({
+        element: document.getElementById('qr-code'),
+        size: 200,
+        value: 'https://studytonight.com'
+
+    })
     (function() {
             qr = new QRious({
             element: document.getElementById('qr-code'),
