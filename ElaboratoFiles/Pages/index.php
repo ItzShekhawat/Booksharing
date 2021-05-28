@@ -52,17 +52,17 @@
                 <a class="btn btn-primary btn-xl rounded-pill mt-5" id = "QRBtn" onclick="window.location.href = '../html/QRCode.html';" role="button" >Scan QRCode</a></div>
         </div>
     </header>
-    <div class="card-deck">
+    <div class="card-deck" style ="margin : 20px;">
 
       <?php 
         while($row = $stmt->fetch(PDO::FETCH_ASSOC)){
 
         ?>
         <div class="card">
-            <img class="card-img-top" src="<?php echo $row['bookCover']; ?>" height = "400px" width = "100px" alt="Card image cap">
+            <img class="card-img-top" src="<?php echo $row['bookCover']; ?>" height = "500px" style="padding: 50px;" alt="Card image cap">
             <div class="card-body">
               <h5 class="card-title"> <?php echo $row['title']; ?> </h5>
-              <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+              <p class="card-text"><?php echo $row['description']; ?></p>
             </div>
             <div class="card-footer text-center" type = "button">
               <medium class="text-muted" >Find out mode</medium>
