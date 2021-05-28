@@ -1,0 +1,19 @@
+html, body{
+  margin: 0px;
+  padding: 0px;
+}
+
+#landhead {
+  background-image: url("../../Images/WebImg/wallpaper.jpg");
+}
+
+.navbar {
+  background-color: #ffffff00;
+}
+
+.card-deck{
+  margin: 0px;
+}
+
+
+

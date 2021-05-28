@@ -5,6 +5,8 @@ QR.onclick = function QRCodeRidirect(){
 
 
 
+
+
 /*
 function QRCodeRidirect(){
     window.location.href = "../html/QRCode.html";
