@@ -30,10 +30,10 @@
 <body>
     <nav class="navbar fixed-top navbar-expand-lg navbar-dark  p-md-3 " style="background-color: rgba(255,255,255,0);"  id="navbar">
         <div class="container"><a class="navbar-brand" href="#">BookSharing</a><button data-toggle="collapse" class="navbar-toggler" data-target="#navbarResponsive"><span class="navbar-toggler-icon"></span></button>
-            <div class="collapse navbar-collapse" id="navbarResponsive">
+            <div class="collapse navbar-collapse " id="navbarResponsive">
                 <div class="nav ml-auto">
                     
-                    <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3" role="search" action="welcome.php" >
+                    <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3 d-flex align-items-center" style="padding-left: 0px;" role="search" action="welcome.php" >
                         <input type="search" id ="search"  name="q" class="form-control form-control-dark" placeholder="Search..." aria-label="Search">
                     </form>
                     <form  action="../ConfigFiles/Auth/session.php" method="post"> 
@@ -57,13 +57,13 @@
       while($row = $stmt->fetch(PDO::FETCH_ASSOC)){
         
         ?>
-      <div class="card col-4" style="margin-bottom: 10px;">
+      <div class="card col-md-4 col-sm-12" style="margin-bottom: 10px;">
         <img class="card-img-top" src="<?php echo $row['bookCover']; ?>" height = "500px" style="padding: 50px;" alt="Card image cap">
         <div class="card-body">
           <h5 class="card-title"> <?php echo $row['title']; ?> </h5>
           <p class="card-text"><?php echo $row['description']; ?></p>
         </div>
-        <div class="card-footer text-center" type = "button">
+        <div class="card-footer text-center"  onclick="window.location.href = '/ElaboratoFiles/Pages/bookdynamic.php/?id=<?php echo $row['bookID']; ?>';" type = "button">
           <medium class="text-muted" >Find out mode</medium>
         </div>
       </div>

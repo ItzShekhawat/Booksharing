@@ -10,7 +10,7 @@
         $tempDir = ("../../QRCODES/");
         $filename = "".$bookTiltle .".png";
         $filesavepath = "".$tempDir.$filename;
-        $book_link = "http://localhost/ElaboratoFiles/Pages/bookpage/?id=".$idBook;
+        $book_link = "http://localhost/ElaboratoFiles/ConfigFiles/BookHandle/bookdynamic.php/?id=".$idBook;
 
         
         if(!file_exists($filesavepath)){

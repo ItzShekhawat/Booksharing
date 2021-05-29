@@ -95,7 +95,7 @@ try{
         <textarea
           name="description"
           type="text"
-          class="input"
+          class="input form-control"
           required="required"
           style="font-family: sans-serif; font-size: 1em"
         >
