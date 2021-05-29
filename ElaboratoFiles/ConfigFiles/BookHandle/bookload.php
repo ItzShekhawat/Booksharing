@@ -10,13 +10,13 @@
             $bookWriterSurname = filter_var($_POST['surname'], FILTER_SANITIZE_STRING);
             $bookProductionHouse = filter_var($_POST['PH'], FILTER_SANITIZE_STRING);
             $bookPublicationDate = filter_var($_POST['pdate'], FILTER_SANITIZE_STRING);
-            $bookCategory = filter_var($_POST['cat'], FILTER_SANITIZE_STRING);
+            $bookCategory_ID = filter_var($_POST['cat'], FILTER_SANITIZE_STRING);
             $bookDescription = filter_var($_POST['description'], FILTER_SANITIZE_STRING);
             $StorageCentre = filter_var($_POST['centre'], FILTER_SANITIZE_STRING);
             $bookCover = filter_var_array($_FILES['bookimg']);
             echo $StorageCentre."</br>";
             echo "Test1 </br>";
-            echo $bookCategory;
+            echo $bookCategory_ID;
             echo "Test1 </br>";
             
             // Getting the Storage Centre ID 
@@ -31,32 +31,42 @@
                 echo "Error in Storage ID ". $e->getMessage();
             }
 
-            // Getting the Category ID
-            try{
-                $query = "SELECT `id_Category` FROM `category` WHERE type_category LIKE '%$bookCategory%';";
-                $stmt = $pdo->prepare($query);
-                $stmt->execute(); 
-                $category_ID = $stmt->fetch();
-                $category_ID = $category_ID[0];
-            }catch(Exception $e){
-                echo "Error in Storage ID ". $e->getMessage();
-            }
-            
 
             // Filling up the DB 
             $bookCover = "../Images/BookImg/".$bookCover['name'];
+            $bookImgSave = "../../Images/BookImg/";
+            move_uploaded_file( $_FILES['bookimg']['tmp_name'], $bookImgSave.$_FILES['bookimg']['name']);
 
             try{
                 $query = "INSERT INTO `books`(`title`, `writer`, `publishing_house`, `publishing_date`, `category`, `description`, `bookCover`, `id_Centre`) VALUES (?,?,?,?,?,?,?,?)";
                 $stmt = $pdo->prepare($query);
-                $stmt->execute([$bookTitle, $bookWriterName.$bookWriterSurname, $bookProductionHouse, $bookPublicationDate, $category_ID, $bookDescription, $bookCover, $id_Centre]);
+                $stmt->execute([$bookTitle, $bookWriterName."".$bookWriterSurname, $bookProductionHouse, $bookPublicationDate, $bookCategory_ID, $bookDescription, $bookCover, $id_Centre]);
                 header('Location: ../../Pages/admin.php');
             }catch(Exception $e){
                 echo "Failed". $e->getMessage();
             }
 
+
+            // Get the id of the book : 
+            $id_book = $pdo->lastInsertId();
+
+            $QR_Info = QRCode_Generator($id_book, $bookTitle);
+
+            try{
+                $query = "INSERT INTO `qrcodes`(`qrcode`, `book_page`, `id_Book`) VALUES (?,?,?)";
+                $stmt = $pdo->prepare($query);
+                if($stmt->execute([$QR_Info[0],$QR_Info[1],$QR_Info[2]])){
+                    echo "QR Path is been saved";
+                }
+    
+            }catch(Exception $e){
+                echo "Error".$e->getMessage();
+            }
+
+
         }
     }
-    bookloading();    
+
+    bookloading();
 
 ?>

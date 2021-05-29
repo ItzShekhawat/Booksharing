@@ -52,26 +52,24 @@
                 <a class="btn btn-primary btn-xl rounded-pill mt-5" id = "QRBtn" onclick="window.location.href = '../html/QRCode.html';" role="button" >Scan QRCode</a></div>
         </div>
     </header>
-    <div class="card-deck" style ="margin : 20px;">
-
+    <div class="row " style="margin: 10px;" >
       <?php 
-        while($row = $stmt->fetch(PDO::FETCH_ASSOC)){
-
+      while($row = $stmt->fetch(PDO::FETCH_ASSOC)){
+        
         ?>
-        <div class="card">
-            <img class="card-img-top" src="<?php echo $row['bookCover']; ?>" height = "500px" style="padding: 50px;" alt="Card image cap">
-            <div class="card-body">
-              <h5 class="card-title"> <?php echo $row['title']; ?> </h5>
-              <p class="card-text"><?php echo $row['description']; ?></p>
-            </div>
-            <div class="card-footer text-center" type = "button">
-              <medium class="text-muted" >Find out mode</medium>
-            </div>
+      <div class="card col-4" style="margin-bottom: 10px;">
+        <img class="card-img-top" src="<?php echo $row['bookCover']; ?>" height = "500px" style="padding: 50px;" alt="Card image cap">
+        <div class="card-body">
+          <h5 class="card-title"> <?php echo $row['title']; ?> </h5>
+          <p class="card-text"><?php echo $row['description']; ?></p>
         </div>
-
+        <div class="card-footer text-center" type = "button">
+          <medium class="text-muted" >Find out mode</medium>
+        </div>
+      </div>
+      
       <?php } ?>
-
-       
+            
     </div>
 
     <footer class="py-5 bg-black">
